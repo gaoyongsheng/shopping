@@ -24,7 +24,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
+        <!-- fastJson -->
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.73</version>
+        </dependency>
         <!-- Spring Boot的JPA依赖包 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -44,11 +50,12 @@
         </dependency>
 
         <!-- 日志配置 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-logging -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring‐boot‐starter‐logging</artifactId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+            <version>2.3.4.RELEASE</version>
         </dependency>
-
         <!-- lombak配置 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -67,7 +74,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <scope>compile</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.junit.vintage</groupId>
@@ -75,14 +82,15 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
     </dependencies>
 
     <build>
+        <defaultGoal>compile</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.6.RELEASE</version>
                 <configuration>
                     <fork>true</fork>
                 </configuration>

@@ -1,13 +1,19 @@
 package com.shopping.demo.controller;
 
+import com.shopping.demo.cro.UserCro;
+import com.shopping.demo.entity.User;
+import com.shopping.demo.service.UserService;
+import com.shopping.demo.utils.PageUtils;
+import com.shopping.demo.utils.ResponseUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import sun.rmi.runtime.Log;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author Gao
@@ -17,20 +23,23 @@ import sun.rmi.runtime.Log;
 
 @RestController
 @Slf4j
+@RequestMapping("/service/v1")
 public class UserController {
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "hello!!!";
+    @Autowired
+    UserService userService;
+
+    @PostMapping("/user.register")
+    public Object registerUser(@RequestBody User user){
+        userService.registerUser(user);
+        return  ResponseUtils.success("");
     }
 
-    @GetMapping("/hello/world")
-    public String helloWorld(){
-        return "hello world!!!";
+    @PostMapping("/user.findAll")
+    public Object findAllUser(@RequestBody UserCro userCro, HttpServletRequest request){
+        System.out.println(">>>>"+request.getParameter("offset"));
+        Page<User> listUser = userService.findAll(userCro);
+        return  ResponseUtils.success(PageUtils.getData(listUser));
     }
 
-    @GetMapping("/say")
-    public String say(){
-        return "hahaha!!!";
-    }
 }
