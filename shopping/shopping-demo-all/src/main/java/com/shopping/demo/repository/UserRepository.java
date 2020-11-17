@@ -24,4 +24,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     @Query(value = "select * from user",nativeQuery = true)
     Page<User> findAllUsers(Pageable pageable);
+
+    User findUserByMobileNum(String mobileNum);
 }

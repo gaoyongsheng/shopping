@@ -22,4 +22,9 @@ public interface UserService {
      * */
     Page<User> findAll(UserCro cro);
 
+    /**
+     * 通过手机号查找用户
+     * */
+    User findUserByMobile(String mobileNum);
+
 }

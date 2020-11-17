@@ -1,7 +1,9 @@
 package com.shopping.demo.controller;
 
+import com.shopping.demo.constants.ShopExceptionCode;
 import com.shopping.demo.cro.UserCro;
 import com.shopping.demo.entity.User;
+import com.shopping.demo.exception.MyShopException;
 import com.shopping.demo.service.UserService;
 import com.shopping.demo.utils.PageUtils;
 import com.shopping.demo.utils.ResponseUtils;
@@ -31,13 +33,16 @@ public class UserController {
 
     @PostMapping("/user.register")
     public Object registerUser(@RequestBody User user){
-        userService.registerUser(user);
-        return  ResponseUtils.success("");
+        try{
+            userService.registerUser(user);
+            return  ResponseUtils.success("");
+        }catch(MyShopException ex){
+            return ResponseUtils.failure(ex.getErrorCode(),ex.getMessage());
+        }
     }
 
     @PostMapping("/user.findAll")
     public Object findAllUser(@RequestBody UserCro userCro, HttpServletRequest request){
-        System.out.println(">>>>"+request.getParameter("offset"));
         Page<User> listUser = userService.findAll(userCro);
         return  ResponseUtils.success(PageUtils.getData(listUser));
     }

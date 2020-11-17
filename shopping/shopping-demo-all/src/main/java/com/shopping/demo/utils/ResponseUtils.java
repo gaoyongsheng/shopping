@@ -22,22 +22,14 @@ public class ResponseUtils {
         return new ResponseUtils.SuccessResult(data);
     }
 
-    public static Object failure(Object data) {
-        return new ResponseUtils.FailureResult(data);
+    public static Object failure(String code, String msg) {
+        return new ResponseUtils.FailureResult(code,msg);
     }
 
     static class FailureResult extends ResultObject {
-        public FailureResult(Object data) {
-            super("1", "", data);
-            String msg;
-            if (data instanceof Map) {
-                Map<String, String> d = (Map) data;
-                msg = (String) d.get("msg");
-            } else {
-                msg = String.valueOf(data);
-            }
-            this.setMsg(msg);
-            this.setData("");
+        public FailureResult(String code, String msg) {
+            super(code, msg, "");
+
         }
     }
 
