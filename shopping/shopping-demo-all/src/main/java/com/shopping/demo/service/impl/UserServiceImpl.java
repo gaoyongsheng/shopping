@@ -34,6 +34,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void deleteUser(User user) {
+
+    }
+
+    @Override
     public Page<User> findAll(UserCro cro) {
         Pageable pageable = PageRequest.of(cro.getOffset(),cro.getPageSize());
         Page<User> listUser = userRepository.findAllUsers(pageable);

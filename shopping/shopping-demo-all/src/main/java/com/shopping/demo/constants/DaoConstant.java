@@ -40,5 +40,19 @@ public class DaoConstant {
    */
   public static final String GOODS_ORDER_TABLE_NAME = "goods_order_middle";
 
+  /**
+   * 操作日志表(oper_log)
+   */
+  public static final String OPER_LOG_TABLE_NAME = "oper_log";
+  public static final String OPER_LOG_USER_ID = "user_id"; //用户ID
+  public static final String OPER_LOG_USERNAME = "username"; //用户名
+  public static final String OPER_LOG_TRUE_NAME = "trueName"; //用户名称
+  public static final String OPER_LOG_MOBILE_NUM = "mobile_num"; //手机号
+  public static final String OPER_LOG_API_INTERFACE = "api_interface"; //API接口
+  public static final String OPER_LOG_API_DESCRIPTION = "api_description"; //API描述
+  public static final String OPER_LOG_REQ_DATA = "req_data"; //请求数据
+  public static final String OPER_LOG_RET_CODE = "ret_code"; //返回结果吗
+  public static final String OPER_LOG_REQ_TIME = "req_time"; //请求时间
+
 
 }

@@ -18,6 +18,11 @@ public interface UserService {
     void registerUser(User user);
 
     /**
+     * 删除用户
+     * */
+    void deleteUser(User user);
+
+    /**
      * 分页查询所有用户
      * */
     Page<User> findAll(UserCro cro);

@@ -2,6 +2,7 @@ package com.shopping.demo.entity;
 
 
 import com.shopping.demo.constants.DaoConstant;
+import com.shopping.demo.dto.UserDto;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -54,7 +55,20 @@ public class User implements Serializable {
     @Column(name = DaoConstant.USER_ROLE)
     private String userRole;
 
+    public User(){}
 
+    public User(UserDto userDto){
+        this.id = userDto.getId();
+        this.userName = userDto.getUserName();
+        this.trueName = userDto.getTrueName();
+        this.email = userDto.getEmail();
+        this.mobileNum = userDto.getMobileNum();
+        this.avatarAddress = userDto.getAvatarAddress();
+        this.sex = userDto.getSex();
+        this.addTime = userDto.getAddTime();
+        this.userRole = userDto.getUserRole();
+
+    }
 
 
 }
