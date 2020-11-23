@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MyInterceptor implements HandlerInterceptor {
 
-    private final Logger LOG = LoggerFactory.getLogger(MyInterceptor.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MyInterceptor.class);
 
     /*{
         content-type:application/json,
@@ -26,7 +26,7 @@ public class MyInterceptor implements HandlerInterceptor {
         String ts = request.getHeader("ts");
         String reqBody = Util.getReqBodyStrByHeader(request);
 
-        LOG.debug("************ServiceId************[{}]",serviceId);
+        LOG.debug("************serviceId************[{}]",serviceId);
         LOG.debug("************signInfo*************[{}]",signInfo);
         LOG.debug("************reqBody**************[{}]",reqBody);
 

@@ -3,12 +3,14 @@ package com.shopping.demo.entity;
 
 import com.shopping.demo.constants.DaoConstant;
 import com.shopping.demo.dto.UserDto;
+import com.shopping.demo.entity.base.BaseModel;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * @Author Gao
@@ -21,12 +23,7 @@ import java.io.Serializable;
 @Data
 @DynamicInsert()
 @DynamicUpdate
-public class User implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = DaoConstant.USER_ID)
-    private Long id;
+public class User extends BaseModel<UserDto> {
 
     @Column(name = DaoConstant.USER_USERNAME)
     private String userName;
@@ -71,4 +68,19 @@ public class User implements Serializable {
     }
 
 
+    @Override
+    public UserDto toDto() {
+        UserDto userDto = new UserDto();
+        userDto.setId(id);
+        userDto.setUserName(userName);
+        userDto.setTrueName(trueName);
+        userDto.setPassword(password);
+        userDto.setMobileNum(mobileNum);
+        userDto.setAddTime(addTime);
+        userDto.setAvatarAddress(avatarAddress);
+        userDto.setEmail(email);
+        userDto.setSex(sex);
+        userDto.setUserRole(userRole);
+        return userDto;
+    }
 }

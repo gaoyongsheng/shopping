@@ -1,5 +1,6 @@
 package com.shopping.demo.cro;
 
+import com.shopping.demo.cro.base.BaseCro;
 import com.shopping.demo.dto.UserDto;
 
 /**
@@ -7,7 +8,7 @@ import com.shopping.demo.dto.UserDto;
  * @Date 2020/11/22 21:19
  * @Version 1.0
  */
-public class UserRegisteCro {
+public class UserRegisteCro extends BaseCro {
 
     private String userName;
     private String password;

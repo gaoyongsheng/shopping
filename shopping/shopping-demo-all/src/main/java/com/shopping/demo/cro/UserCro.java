@@ -1,8 +1,10 @@
 package com.shopping.demo.cro;
 
+import com.shopping.demo.cro.base.BaseCro;
+
 import java.io.Serializable;
 
-public class UserCro implements Serializable {
+public class UserCro extends BaseCro {
 
     // 当前第几页。从0开始
     private int offset;

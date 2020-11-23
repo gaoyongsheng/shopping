@@ -1,13 +1,13 @@
 package com.shopping.demo.dto;
 
-import java.util.Objects;
+import com.shopping.demo.dto.base.BaseBto;
 
 /**
  * @Author Gao
  * @Date 2020/11/22 23:31
  * @Version 1.0
  */
-public class UserDto {
+public class UserDto extends BaseBto {
 
     private Long id;
 
