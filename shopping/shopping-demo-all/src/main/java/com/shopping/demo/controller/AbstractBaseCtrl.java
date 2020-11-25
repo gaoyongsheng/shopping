@@ -1,16 +1,32 @@
-package com.shopping.demo.utils;
+package com.shopping.demo.controller;
 
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.shopping.demo.utils.ResponseUtils;
 import org.springframework.data.domain.Page;
 
-public class PageUtils {
+public class AbstractBaseCtrl {
+
+    /**
+     * 返回正确的处理数据
+     * */
+    public Object success(Object data){
+        return ResponseUtils.success(data);
+    }
+
+    /**
+     * 返回错误的处理数据
+     * */
+    public Object failure(String code,String msg){
+
+        return ResponseUtils.failure(code,msg);
+    }
 
     /**
      * 利用jpa查询分页结果
      * offset值为-1表示为最后一页，-2表示没有返回数据
      * */
-    public static Object getData(Page page){
+    public Object getData(Page page){
         JSONObject jsonObject = new JSONObject();
         try {
             if(page.getNumberOfElements() != 0){

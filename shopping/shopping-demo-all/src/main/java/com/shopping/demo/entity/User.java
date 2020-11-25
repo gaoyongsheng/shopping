@@ -58,6 +58,7 @@ public class User extends BaseModel<UserDto> {
         this.id = userDto.getId();
         this.userName = userDto.getUserName();
         this.trueName = userDto.getTrueName();
+        this.password = userDto.getPassword();
         this.email = userDto.getEmail();
         this.mobileNum = userDto.getMobileNum();
         this.avatarAddress = userDto.getAvatarAddress();

@@ -1,11 +1,11 @@
 package com.shopping.demo.controller;
 
-import com.shopping.demo.constants.ShopExceptionCode;
 import com.shopping.demo.cro.UserCro;
+import com.shopping.demo.cro.UserEditCro;
+import com.shopping.demo.cro.UserRegisteCro;
 import com.shopping.demo.entity.User;
 import com.shopping.demo.exception.MyShopException;
 import com.shopping.demo.service.UserService;
-import com.shopping.demo.utils.PageUtils;
 import com.shopping.demo.utils.ResponseUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,25 +26,31 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @Slf4j
 @RequestMapping("/service/v1")
-public class UserController {
+public class UserController extends AbstractBaseCtrl {
 
     @Autowired
     UserService userService;
 
     @PostMapping("/user.register")
-    public Object registerUser(@RequestBody User user){
+    public Object registerUser(@RequestBody UserRegisteCro userRegisteCro){
         try{
-            userService.registerUser(user);
-            return  ResponseUtils.success("");
+            userService.registerUser(userRegisteCro);
+            return success("");
         }catch(MyShopException ex){
-            return ResponseUtils.failure(ex.getErrorCode(),ex.getMessage());
+            return failure(ex.getErrorCode(),ex.getMessage());
         }
     }
 
     @PostMapping("/user.findAll")
-    public Object findAllUser(@RequestBody UserCro userCro, HttpServletRequest request){
+    public Object findAllUser(@RequestBody UserCro userCro){
         Page<User> listUser = userService.findAll(userCro);
-        return  ResponseUtils.success(PageUtils.getData(listUser));
+        return success(getData(listUser));
+    }
+
+    @PostMapping("/user.edit")
+    public Object editUser(@RequestBody UserEditCro userEditCro){
+
+        return success("");
     }
 
 }

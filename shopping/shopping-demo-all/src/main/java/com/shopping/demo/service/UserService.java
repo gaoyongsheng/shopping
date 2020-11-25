@@ -1,6 +1,8 @@
 package com.shopping.demo.service;
 
 import com.shopping.demo.cro.UserCro;
+import com.shopping.demo.cro.UserEditCro;
+import com.shopping.demo.cro.UserRegisteCro;
 import com.shopping.demo.entity.User;
 import org.springframework.data.domain.Page;
 
@@ -15,7 +17,7 @@ public interface UserService {
     /**
      * 注册用户
      * */
-    void registerUser(User user);
+    void registerUser(UserRegisteCro userRegisteCro);
 
     /**
      * 删除用户
@@ -32,4 +34,8 @@ public interface UserService {
      * */
     User findUserByMobile(String mobileNum);
 
+    /**
+     * 编辑用户
+     * */
+    User editUser(UserEditCro userEditCro);
 }

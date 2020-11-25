@@ -50,7 +50,7 @@ public class DateTimeUtils {
     }
     
     public static String getSysCurDate(){
-        return LocalDate.now() + " " + LocalTime.now();
+        return getDateFormat().format(new Date(stringToLong(getSysCurTimeStamp())));
     }
 
     public static String getSysCurTimeStamp(){return System.currentTimeMillis() + "";}
