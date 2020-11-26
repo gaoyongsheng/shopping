@@ -22,8 +22,8 @@ public class MyInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String serviceId = request.getHeader("serviceId").trim();
-        String signInfo = request.getHeader("signInfo");
-        String ts = request.getHeader("ts");
+        String signInfo = request.getHeader("signInfo").trim();
+        String ts = request.getHeader("ts").trim();
         String reqBody = Util.getReqBodyStrByHeader(request);
 
         LOG.debug("************serviceId************[{}]",serviceId);

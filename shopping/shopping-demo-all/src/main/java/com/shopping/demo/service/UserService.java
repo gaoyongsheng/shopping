@@ -2,6 +2,7 @@ package com.shopping.demo.service;
 
 import com.shopping.demo.cro.UserCro;
 import com.shopping.demo.cro.UserEditCro;
+import com.shopping.demo.cro.UserLoginCro;
 import com.shopping.demo.cro.UserRegisteCro;
 import com.shopping.demo.entity.User;
 import org.springframework.data.domain.Page;
@@ -38,4 +39,9 @@ public interface UserService {
      * 编辑用户
      * */
     User editUser(UserEditCro userEditCro);
+
+    /**
+     * 通过用户名或者手机号查询用户
+     * */
+    User findUserByUserNameOrMobile(UserLoginCro userLoginCro);
 }

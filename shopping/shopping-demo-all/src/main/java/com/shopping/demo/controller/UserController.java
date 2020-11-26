@@ -2,6 +2,7 @@ package com.shopping.demo.controller;
 
 import com.shopping.demo.cro.UserCro;
 import com.shopping.demo.cro.UserEditCro;
+import com.shopping.demo.cro.UserLoginCro;
 import com.shopping.demo.cro.UserRegisteCro;
 import com.shopping.demo.entity.User;
 import com.shopping.demo.exception.MyShopException;
@@ -37,6 +38,16 @@ public class UserController extends AbstractBaseCtrl {
             userService.registerUser(userRegisteCro);
             return success("");
         }catch(MyShopException ex){
+            return failure(ex.getErrorCode(),ex.getMessage());
+        }
+    }
+
+    @PostMapping("/user.login")
+    public Object editUser(@RequestBody UserLoginCro userLoginCro){
+        try{
+            User user = userService.findUserByUserNameOrMobile(userLoginCro);
+            return success(user);
+        } catch (MyShopException ex){
             return failure(ex.getErrorCode(),ex.getMessage());
         }
     }

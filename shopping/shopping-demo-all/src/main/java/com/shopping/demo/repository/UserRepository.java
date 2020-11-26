@@ -25,5 +25,14 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Query(value = "select * from user",nativeQuery = true)
     Page<User> findAllUsers(Pageable pageable);
 
+    /**
+     * 通过手机号查找用户
+     * */
     User findUserByMobileNum(String mobileNum);
+
+    /**
+     * 通过用户名查找用户
+     * */
+    User findUserByUserName(String userName);
+
 }
