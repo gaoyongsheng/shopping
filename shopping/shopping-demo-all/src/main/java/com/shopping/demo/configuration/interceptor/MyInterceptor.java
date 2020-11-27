@@ -26,9 +26,9 @@ public class MyInterceptor implements HandlerInterceptor {
         String ts = request.getHeader("ts").trim();
         String reqBody = Util.getReqBodyStrByHeader(request);
 
-        LOG.debug("************serviceId************[{}]",serviceId);
-        LOG.debug("************signInfo*************[{}]",signInfo);
-        LOG.debug("************reqBody**************[{}]",reqBody);
+        LOG.info("************serviceId************[{}]",serviceId);
+        LOG.info("************signInfo*************[{}]",signInfo);
+        LOG.info("************reqBody**************[{}]",reqBody);
 
         return true;
     }

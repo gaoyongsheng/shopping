@@ -1,5 +1,6 @@
 package com.shopping.demo.utils;
 
+import com.shopping.demo.configuration.filter.MyRequestWrapper;
 import com.shopping.demo.constants.CommomData;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,21 +43,21 @@ public class Util {
      * */
     public static String getReqBodyStrByHeader(HttpServletRequest request) throws IOException {
 
-//        MyRequestWrapper myRequestWrapper = new MyRequestWrapper(request);
-//        return myRequestWrapper.getBody();
+        MyRequestWrapper myRequestWrapper = new MyRequestWrapper(request);
+        return myRequestWrapper.getBody();
 
-        StringBuffer strBuffer = new StringBuffer();
-        try {
-            BufferedReader bufferedReader = request.getReader();
-            String str = null;
-            while((str = bufferedReader.readLine()) != null){
-                strBuffer.append(str.trim());
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return strBuffer.toString();
+//        StringBuffer strBuffer = new StringBuffer();
+//        try {
+//            BufferedReader bufferedReader = request.getReader();
+//            String str = null;
+//            while((str = bufferedReader.readLine()) != null){
+//                strBuffer.append(str.trim());
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return strBuffer.toString();
     }
 }

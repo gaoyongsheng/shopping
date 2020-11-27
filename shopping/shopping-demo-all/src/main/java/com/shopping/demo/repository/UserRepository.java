@@ -35,4 +35,14 @@ public interface UserRepository extends JpaRepository<User,Long> {
      * */
     User findUserByUserName(String userName);
 
+    /**
+     * 通过Id查找用户
+     * */
+    User findUserById(Long id);
+
+    /**
+     * 通过Id删除用户
+     * */
+    void deleteUserById(Long id);
+
 }

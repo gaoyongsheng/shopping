@@ -17,6 +17,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl extends AbstractBaseImpl implements UserService {
 
@@ -53,6 +55,7 @@ public class UserServiceImpl extends AbstractBaseImpl implements UserService {
         return curUser;
     }
 
+
     @Override
     public User editUser(UserEditCro userEditCro) {
 
@@ -79,5 +82,21 @@ public class UserServiceImpl extends AbstractBaseImpl implements UserService {
         }
     }
 
+    @Override
+    public User findUserById(Long id) {
+        User user = userRepository.findUserById(id);
+        if(null == user){
+            throw new MyShopException(ShopExceptionCode.ENTITY_NO_EXISTS,"用户不存在");
+        }
+        return user;
+    }
+
+    @Override
+    public void deleteUserById(Long id) {
+        if(null == findUserById(id)){
+            throw new MyShopException(ShopExceptionCode.ENTITY_NO_EXISTS,"用户不存在");
+        }
+        userRepository.deleteUserById(id);
+    }
 
 }

@@ -36,6 +36,11 @@ public interface UserService {
     User findUserByMobile(String mobileNum);
 
     /**
+     * 通过id查找用户
+     * */
+    User findUserById(Long id);
+
+    /**
      * 编辑用户
      * */
     User editUser(UserEditCro userEditCro);
@@ -44,4 +49,10 @@ public interface UserService {
      * 通过用户名或者手机号查询用户
      * */
     User findUserByUserNameOrMobile(UserLoginCro userLoginCro);
+
+    /**
+     * 通过Id删除用户
+     * */
+    void deleteUserById(Long id);
+
 }

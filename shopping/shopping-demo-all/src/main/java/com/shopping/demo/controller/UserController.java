@@ -1,5 +1,6 @@
 package com.shopping.demo.controller;
 
+import com.shopping.demo.constants.ShopExceptionCode;
 import com.shopping.demo.cro.UserCro;
 import com.shopping.demo.cro.UserEditCro;
 import com.shopping.demo.cro.UserLoginCro;
@@ -11,10 +12,8 @@ import com.shopping.demo.utils.ResponseUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -64,4 +63,20 @@ public class UserController extends AbstractBaseCtrl {
         return success("");
     }
 
+    @GetMapping("/user.findById")
+    public Object findUserById(@RequestParam("id") Long id){
+        try{
+            User curUser = userService.findUserById(id);
+            return success(curUser);
+        } catch (MyShopException ex){
+            return failure(ex.getErrorCode(),ex.getMessage());
+        }
+
+    }
+
+    @GetMapping("/user.deleteById")
+    public Object deleteUserById(@RequestParam("id") Long id){
+        userService.deleteUserById(id);
+        return success("");
+    }
 }

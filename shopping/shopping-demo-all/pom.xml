@@ -84,6 +84,13 @@
         </dependency>
     </dependencies>
 
+    <!--<repositories>
+        <repository>
+            <id>alimaven</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>-->
+
     <build>
         <defaultGoal>compile</defaultGoal>
         <plugins>
