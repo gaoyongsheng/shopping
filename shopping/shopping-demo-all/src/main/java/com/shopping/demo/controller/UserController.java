@@ -42,7 +42,7 @@ public class UserController extends AbstractBaseCtrl {
     }
 
     @PostMapping("/user.login")
-    public Object editUser(@RequestBody UserLoginCro userLoginCro){
+    public Object userLogin(@RequestBody UserLoginCro userLoginCro){
         try{
             User user = userService.findUserByUserNameOrMobile(userLoginCro);
             return success(user);
@@ -60,7 +60,7 @@ public class UserController extends AbstractBaseCtrl {
     @PostMapping("/user.edit")
     public Object editUser(@RequestBody UserEditCro userEditCro){
 
-        return success("");
+        return success(userService.editUser(userEditCro));
     }
 
     @GetMapping("/user.findById")
@@ -76,7 +76,11 @@ public class UserController extends AbstractBaseCtrl {
 
     @GetMapping("/user.deleteById")
     public Object deleteUserById(@RequestParam("id") Long id){
-        userService.deleteUserById(id);
-        return success("");
+        try{
+            userService.deleteUserById(id);
+            return success("");
+        } catch (MyShopException ex){
+            return failure(ex.getErrorCode(),ex.getMessage());
+        }
     }
 }

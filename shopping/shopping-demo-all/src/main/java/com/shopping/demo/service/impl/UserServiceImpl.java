@@ -16,10 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class UserServiceImpl extends AbstractBaseImpl implements UserService {
 
     @Autowired
@@ -37,10 +37,6 @@ public class UserServiceImpl extends AbstractBaseImpl implements UserService {
         userRepository.save(new User(userDto));
     }
 
-    @Override
-    public void deleteUser(User user) {
-
-    }
 
     @Override
     public Page<User> findAll(UserCro cro) {
@@ -58,8 +54,15 @@ public class UserServiceImpl extends AbstractBaseImpl implements UserService {
 
     @Override
     public User editUser(UserEditCro userEditCro) {
-
-        return null;
+        // 获取当前登录的用户信息
+        User curUser = findUserById(userEditCro.getId());
+        curUser.setUserName(userEditCro.getUserName());
+        curUser.setTrueName(userEditCro.getTrueName());
+        curUser.setMobileNum(userEditCro.getMobileNum());
+        curUser.setEmail(userEditCro.getEmail());
+        curUser.setSex(userEditCro.getSex());
+        curUser.setUserRole(userEditCro.getUserRole());
+        return curUser;
     }
 
     @Override
@@ -75,7 +78,26 @@ public class UserServiceImpl extends AbstractBaseImpl implements UserService {
         } else {
             User curUser2 = userRepository.findUserByUserName(userLoginCro.getUserName());
             if(null == curUser2){
-                throw new MyShopException(ShopExceptionCode.ENTITY_NO_EXISTS,"用户不存在"); // 该手机号未被注册
+                throw new MyShopException(ShopExceptionCode.ENTITY_NO_EXISTS,"用户不存在"); // 用户不存在
+            } else {
+                return curUser2;
+            }
+        }
+    }
+
+    @Override
+    public User findCurUserByUserNameOrMobile(String str) {
+        if(Util.checkIsPhone(str)){   // 是手机号
+            User curUser1 = userRepository.findUserByMobileNum(str);
+            if(null == curUser1){
+                throw new MyShopException(ShopExceptionCode.MOBILE_NO_REGIST,"该手机号未被注册"); // 该手机号未被注册
+            } else {
+                return curUser1;
+            }
+        } else {
+            User curUser2 = userRepository.findUserByUserName(str);
+            if(null == curUser2){
+                throw new MyShopException(ShopExceptionCode.ENTITY_NO_EXISTS,"用户不存在"); // 用户不存在
             } else {
                 return curUser2;
             }

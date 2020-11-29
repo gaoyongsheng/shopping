@@ -20,10 +20,6 @@ public interface UserService {
      * */
     void registerUser(UserRegisteCro userRegisteCro);
 
-    /**
-     * 删除用户
-     * */
-    void deleteUser(User user);
 
     /**
      * 分页查询所有用户
@@ -49,6 +45,8 @@ public interface UserService {
      * 通过用户名或者手机号查询用户
      * */
     User findUserByUserNameOrMobile(UserLoginCro userLoginCro);
+
+    User findCurUserByUserNameOrMobile(String str);
 
     /**
      * 通过Id删除用户

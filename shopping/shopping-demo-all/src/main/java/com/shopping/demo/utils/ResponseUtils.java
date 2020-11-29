@@ -1,6 +1,8 @@
 package com.shopping.demo.utils;
 
 import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -13,6 +15,8 @@ import java.util.Map;
  */
 public class ResponseUtils {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ResponseUtils.class);
+
     public static JSONObject success(Object data) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("code","0");
@@ -22,6 +26,9 @@ public class ResponseUtils {
         } else {
             jsonObject.put("data",data);
         }
+
+        LOG.info("************respBody**************[{}]",jsonObject.toString());
+
         return jsonObject;
     }
 
@@ -30,6 +37,9 @@ public class ResponseUtils {
         jsonObject.put("code",code);
         jsonObject.put("msg",msg);
         jsonObject.put("data","");
+
+        LOG.info("************respBody**************[{}]",jsonObject.toString());
+
         return jsonObject;
     }
 

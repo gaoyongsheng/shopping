@@ -5,6 +5,8 @@ import com.shopping.demo.dto.UserDto;
 
 public class UserEditCro extends BaseCro {
 
+    private Long id;
+
     private String userName;
 
     private String trueName;
@@ -13,18 +15,27 @@ public class UserEditCro extends BaseCro {
 
     private String mobileNum;
 
-    private String avatarAddress;
-
     private String sex;
+
+    private String userRole;
 
     public UserDto toDto(){
         UserDto userDto = new UserDto();
+        userDto.setId(id);
         userDto.setUserName(userName);
         userDto.setTrueName(trueName);
         userDto.setEmail(email);
         userDto.setSex(sex);
-        userDto.setAvatarAddress(avatarAddress);
+        userDto.setUserRole(userRole);
         return userDto;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -59,28 +70,12 @@ public class UserEditCro extends BaseCro {
         this.mobileNum = mobileNum;
     }
 
-    public String getAvatarAddress() {
-        return avatarAddress;
-    }
-
-    public void setAvatarAddress(String avatarAddress) {
-        this.avatarAddress = avatarAddress;
-    }
-
     public String getSex() {
         return sex;
     }
 
     public void setSex(String sex) {
         this.sex = sex;
-    }
-
-    public String getAddTime() {
-        return addTime;
-    }
-
-    public void setAddTime(String addTime) {
-        this.addTime = addTime;
     }
 
     public String getUserRole() {
@@ -90,9 +85,4 @@ public class UserEditCro extends BaseCro {
     public void setUserRole(String userRole) {
         this.userRole = userRole;
     }
-
-    private String addTime;
-
-    private String userRole;
-
 }
