@@ -27,7 +27,7 @@ public class ResponseUtils {
             jsonObject.put("data",data);
         }
 
-        LOG.info("************respBody**************[{}]",jsonObject.toString());
+        LOG.info("************responseBody**************[{}]",jsonObject.toString());
 
         return jsonObject;
     }
@@ -38,7 +38,7 @@ public class ResponseUtils {
         jsonObject.put("msg",msg);
         jsonObject.put("data","");
 
-        LOG.info("************respBody**************[{}]",jsonObject.toString());
+        LOG.info("************responseBody**************[{}]",jsonObject.toString());
 
         return jsonObject;
     }

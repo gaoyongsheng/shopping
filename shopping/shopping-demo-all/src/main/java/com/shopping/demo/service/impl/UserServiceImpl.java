@@ -13,11 +13,14 @@ import com.shopping.demo.service.UserService;
 import com.shopping.demo.utils.DateTimeUtils;
 import com.shopping.demo.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@CacheConfig(cacheNames = "curLoginUser")
 @Service
 @Transactional
 public class UserServiceImpl extends AbstractBaseImpl implements UserService {
@@ -85,6 +88,7 @@ public class UserServiceImpl extends AbstractBaseImpl implements UserService {
         }
     }
 
+    @Cacheable
     @Override
     public User findCurUserByUserNameOrMobile(String str) {
         if(Util.checkIsPhone(str)){   // 是手机号
@@ -104,6 +108,7 @@ public class UserServiceImpl extends AbstractBaseImpl implements UserService {
         }
     }
 
+    @Cacheable
     @Override
     public User findUserById(Long id) {
         User user = userRepository.findUserById(id);

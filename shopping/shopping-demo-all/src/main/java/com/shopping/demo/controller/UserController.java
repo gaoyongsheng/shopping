@@ -63,8 +63,12 @@ public class UserController extends AbstractBaseCtrl {
         return success(userService.editUser(userEditCro));
     }
 
-    @GetMapping("/user.findById")
-    public Object findUserById(@RequestParam("id") Long id){
+//    @GetMapping("/user.findById")
+//    public Object findUserById(@RequestParam(value = "id",defaultValue = "0") Long id){
+//    @PathVariable("xxx")
+//    通过 @PathVariable 可以将URL中占位符参数{xxx}绑定到处理器类的方法形参中@PathVariable(“xxx“)
+    @GetMapping("/user.findById/{id}")
+    public Object findUserById(@PathVariable("id") Long id){
         try{
             User curUser = userService.findUserById(id);
             return success(curUser);

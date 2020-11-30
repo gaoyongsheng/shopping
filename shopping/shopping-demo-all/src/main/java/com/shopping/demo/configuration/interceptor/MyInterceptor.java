@@ -48,7 +48,7 @@ public class MyInterceptor implements HandlerInterceptor {
 //          校验签名是否正确
             User curUser = userService.findCurUserByUserNameOrMobile(serviceId);
 
-            LOG.info("************curUser**************[{}]",curUser.toString());
+            LOG.info("************curLoginUser*********[{}]",curUser.toString());
 
             String signStr = serviceId + curUser.getPassword() + ts;
             if(signInfo.equals(EncryptUtils.shaEncode(signStr))){
