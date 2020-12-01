@@ -24,6 +24,15 @@ public class DaoConstant {
    * 地址表（address）
    */
   public static final String ADDRESS_TABLE_NAME = "address";
+  public static final String ADDRESS_ID = "id";
+  public static final String ADDRESS_NAME = "addr_user"; //收件人名称
+  public static final String ADDRESS_MOBILE = "addr_mobile";//收件人手机号
+  public static final String ADDRESS_PROVINCE = "addr_province";//收件人所在省
+  public static final String ADDRESS_CITY = "addr_city";//收件人所在市
+  public static final String ADDRESS_COUNTY = "addr_county";//收件人所在县、区
+  public static final String ADDRESS_DETAIL = "addr_detail";//收件人所在的详细地址
+  public static final String ADDRESS_USER_FOREIGN_ID = "addr_user_foreign_id";//address表的外键只想用户表的主键
+
 
   /**
    * 商品表（goods）
