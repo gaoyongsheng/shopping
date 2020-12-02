@@ -6,36 +6,37 @@ import com.shopping.demo.dto.AddressDto;
 import com.shopping.demo.entity.base.BaseModel;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = DaoConstant.ADDRESS_TABLE_NAME)
 @Data
 public class Address extends BaseModel<AddressDto> {
 
-    @Column()
+    @Column(name = DaoConstant.ADDRESS_NAME)
     private String addrUser;
 
-    @Column()
+    @Column(name = DaoConstant.ADDRESS_MOBILE)
     private String addrMobile;
 
-    @Column()
+    @Column(name = DaoConstant.ADDRESS_PROVINCE)
     private String addrProvince;
 
-    @Column()
+    @Column(name = DaoConstant.ADDRESS_CITY)
     private String addrCity;
 
-    @Column()
+    @Column(name = DaoConstant.ADDRESS_COUNTY)
     private String addrCounty;
 
-    @Column()
+    @Column(name = DaoConstant.ADDRESS_DETAIL)
     private String addrDetail;
 
-    @Column()
-    private Long addrUserForeignId;
+//    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    @JoinColumn(name = DaoConstant.ADDRESS_USER_ID)
+//    private User user;
 
+    @Column(name = DaoConstant.ADDRESS_USER_ID)
+    private Long addrUserId;
 
     public Address(){}
 
@@ -47,6 +48,7 @@ public class Address extends BaseModel<AddressDto> {
         this.addrCity = addressDto.getAddrCity();
         this.addrCounty = addressDto.getAddrCounty();
         this.addrDetail = addressDto.getAddrDetail();
+        this.addrUserId = addressDto.getAddrUserId();
     }
 
     @Override
@@ -59,6 +61,7 @@ public class Address extends BaseModel<AddressDto> {
         addressDto.setAddrCity(addrCity);
         addressDto.setAddrCounty(addrCounty);
         addressDto.setAddrDetail(addrDetail);
+//        addressDto.setUser(user);
         return addressDto;
     }
 
@@ -73,6 +76,7 @@ public class Address extends BaseModel<AddressDto> {
                 ", addrCity='" + addrCity +
                 ", addrCounty='" + addrCounty +
                 ", addrDetail='" + addrDetail +
+                ", addrUserId='" + addrUserId +
                 '}';
     }
 }

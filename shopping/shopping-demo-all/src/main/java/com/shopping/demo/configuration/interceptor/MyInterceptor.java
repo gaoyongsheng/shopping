@@ -6,6 +6,7 @@ import com.shopping.demo.exception.MyShopException;
 import com.shopping.demo.service.UserService;
 import com.shopping.demo.utils.EncryptUtils;
 import com.shopping.demo.utils.ResponseUtils;
+import com.shopping.demo.utils.ThreadLocalUtils;
 import com.shopping.demo.utils.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +53,7 @@ public class MyInterceptor implements HandlerInterceptor {
 
             String signStr = serviceId + curUser.getPassword() + ts;
             if(signInfo.equals(EncryptUtils.shaEncode(signStr))){
+                ThreadLocalUtils.set(curUser);
                 return true;
             } else {
                 throw new MyShopException(ShopExceptionCode.SIGNATURE_ERROR,"签名错误");

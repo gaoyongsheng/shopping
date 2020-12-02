@@ -31,7 +31,7 @@ public class DaoConstant {
   public static final String ADDRESS_CITY = "addr_city";//收件人所在市
   public static final String ADDRESS_COUNTY = "addr_county";//收件人所在县、区
   public static final String ADDRESS_DETAIL = "addr_detail";//收件人所在的详细地址
-  public static final String ADDRESS_USER_FOREIGN_ID = "addr_user_foreign_id";//address表的外键只想用户表的主键
+  public static final String ADDRESS_USER_ID = "addr_user_id";//address表的外键指向用户表的主键
 
 
   /**

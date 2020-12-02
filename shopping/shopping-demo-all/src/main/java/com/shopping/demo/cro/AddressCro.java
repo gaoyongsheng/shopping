@@ -1,9 +1,14 @@
-package com.shopping.demo.dto;
+package com.shopping.demo.cro;
 
-import com.shopping.demo.dto.base.BaseDto;
-import com.shopping.demo.entity.User;
+import com.shopping.demo.cro.base.BaseCro;
+import com.shopping.demo.dto.AddressDto;
 
-public class AddressDto extends BaseDto {
+/**
+ * @Author ldc
+ * @Date 2020/12/2 11:44
+ * @Version 1.0
+ */
+public class AddressCro extends BaseCro {
 
     private Long id;
 
@@ -19,8 +24,17 @@ public class AddressDto extends BaseDto {
 
     private String addrDetail;
 
-    //    private User user;
-    private Long addrUserId;
+    public AddressDto toDto(){
+        AddressDto addressDto = new AddressDto();
+        addressDto.setId(id);
+        addressDto.setAddrUser(addrUser);
+        addressDto.setAddrMobile(addrMobile);
+        addressDto.setAddrProvince(addrProvince);
+        addressDto.setAddrCity(addrCity);
+        addressDto.setAddrCounty(addrCounty);
+        addressDto.setAddrDetail(addrDetail);
+        return addressDto;
+    }
 
     public Long getId() {
         return id;
@@ -76,35 +90,5 @@ public class AddressDto extends BaseDto {
 
     public void setAddrDetail(String addrDetail) {
         this.addrDetail = addrDetail;
-    }
-
-    public Long getAddrUserId() {
-        return addrUserId;
-    }
-
-    public void setAddrUserId(Long addrUserId) {
-        this.addrUserId = addrUserId;
-    }
-
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-
-    @Override
-    public String toString() {
-        return "AddressDto{" +
-                "id=" + id +
-                ", addrUser='" + addrUser +
-                ", addrMobile='" + addrMobile +
-                ", addrProvince='" + addrProvince +
-                ", addrCity='" + addrCity +
-                ", addrCounty='" + addrCounty +
-                ", addrDetail='" + addrDetail +
-                ", addrUserId='" + addrUserId +
-                '}';
     }
 }

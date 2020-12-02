@@ -8,9 +8,9 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @Author Gao
@@ -52,6 +52,10 @@ public class User extends BaseModel<UserDto> {
     @Column(name = DaoConstant.USER_ROLE)
     private String userRole;
 
+    @OneToMany(cascade={CascadeType.ALL},fetch = FetchType.LAZY)
+    @JoinColumn(name = DaoConstant.ADDRESS_USER_ID)
+    private Set<Address> addrList = new HashSet();
+
     public User(){}
 
     public User(UserDto userDto){
@@ -83,5 +87,21 @@ public class User extends BaseModel<UserDto> {
         userDto.setSex(sex);
         userDto.setUserRole(userRole);
         return userDto;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id +
+                ",userName='" + userName +
+                ", trueName='" + trueName +
+                ", password='" + password +
+                ", email='" + email +
+                ", mobileNum='" + mobileNum +
+                ", avatarAddress='" + avatarAddress +
+                ", sex='" + sex +
+                ", addTime='" + addTime +
+                ", userRole='" + userRole +
+                '}';
     }
 }
