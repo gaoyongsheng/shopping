@@ -7,7 +7,6 @@ public abstract class BaseModel<T> implements ToDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     protected Long id;
 
     public Long getId() {

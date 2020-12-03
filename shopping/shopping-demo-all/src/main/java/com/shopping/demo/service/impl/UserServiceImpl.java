@@ -14,6 +14,8 @@ import com.shopping.demo.utils.DateTimeUtils;
 import com.shopping.demo.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -54,7 +56,7 @@ public class UserServiceImpl extends AbstractBaseImpl implements UserService {
         return curUser;
     }
 
-
+    @CachePut(key = "#result.id")
     @Override
     public User editUser(UserEditCro userEditCro) {
         // 获取当前登录的用户信息
@@ -118,6 +120,7 @@ public class UserServiceImpl extends AbstractBaseImpl implements UserService {
         return user;
     }
 
+    @CacheEvict
     @Override
     public void deleteUserById(Long id) {
         if(null == findUserById(id)){
