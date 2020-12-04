@@ -76,4 +76,15 @@ public class DaoConstant {
     public static final String OPER_LOG_REQ_TIME = "req_time"; //请求时间
 
 
+    /***
+     * 头像  http://img13.360buyimg.com/n1/jfs/t1/120779/36/13461/117573/5f6c6589Edadbe6d0/2c47e836ae440048.jpg
+     * 商品  洋河52度尊享版
+     * 价格  429.00
+     * 描述  洋河 梦之蓝 M1·精装尊享版 单盒装 500ml 52度口感绵柔浓香型高度白酒 送礼佳选
+     * 详情图片 http://img30.360buyimg.com/sku/jfs/t1/152076/32/689/66024/5f6c66a7E4a5de59f/98e5d0dc824f85f6.jpg
+     *         http://img30.360buyimg.com/sku/jfs/t1/145186/36/9192/132434/5f6c66a7E756d01e2/7f909ff59b9c315d.jpg
+     *         http://img30.360buyimg.com/sku/jfs/t1/122186/8/13351/70750/5f6c66a7E4b9be84f/aaa242ba0fe8be44.jpg
+     *         http://img30.360buyimg.com/sku/jfs/t1/139838/24/9035/77538/5f6c66a7Ec16608c8/773afa6b8094e002.jpg
+     */
+
 }

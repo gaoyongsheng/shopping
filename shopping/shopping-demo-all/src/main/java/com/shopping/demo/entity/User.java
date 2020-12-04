@@ -1,6 +1,7 @@
 package com.shopping.demo.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.shopping.demo.constants.DaoConstant;
 import com.shopping.demo.dto.UserDto;
 import com.shopping.demo.entity.base.BaseModel;
