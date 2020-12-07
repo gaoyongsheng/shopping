@@ -1,5 +1,7 @@
 package com.shopping.demo.constants;
 
+import java.util.List;
+
 /**
  * 数据库字段常量.
  */
@@ -46,6 +48,7 @@ public class DaoConstant {
     public static final String GOODS_IMAGE = "goods_image";//商品图片集合
     public static final String GOODS_DETAIL_TEXT = "goods_detail_text";//商品详情描述文本
     public static final String GOODS_DETAIL_IMAGE = "goods_detail_image";//商品详情图片集合
+    public static final String GOODS_ADD_TIME = "goods_add_time";//商品添加时间
     public static final String GOODS_USER_ID = "goods_user_id";//goods表的外键指向用户表的主键
 
 
@@ -86,5 +89,6 @@ public class DaoConstant {
      *         http://img30.360buyimg.com/sku/jfs/t1/122186/8/13351/70750/5f6c66a7E4b9be84f/aaa242ba0fe8be44.jpg
      *         http://img30.360buyimg.com/sku/jfs/t1/139838/24/9035/77538/5f6c66a7Ec16608c8/773afa6b8094e002.jpg
      */
+
 
 }

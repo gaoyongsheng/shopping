@@ -4,7 +4,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 public class AbstractBaseImpl {
-
+    
+    /**
+     * @Author ldc
+     * @Description //TODO 
+     * @Date 16:58 2020/12/7
+     * @Param [str]
+     * @return java.lang.Long
+     */
+    public Long strToLong(String str){return Long.parseLong(str);}
 
     /**
      * 获取pageAble
