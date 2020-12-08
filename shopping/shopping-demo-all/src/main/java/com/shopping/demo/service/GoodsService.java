@@ -1,7 +1,9 @@
 package com.shopping.demo.service;
 
+import com.shopping.demo.cro.GoodsAllCro;
 import com.shopping.demo.cro.GoodsCro;
 import com.shopping.demo.entity.Goods;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -38,7 +40,7 @@ public interface GoodsService {
      * @Param [goodsCro]
      * @return void
      */
-    void deleteOneGoods(GoodsCro goodsCro);
+    void deleteGoodsById(Long id);
     
     /**
      * @Author ldc
@@ -65,7 +67,7 @@ public interface GoodsService {
      * @Param []
      * @return java.util.List<com.shopping.demo.entity.Goods>
      */
-    List<Goods> findAllGoods();
+    Page<Goods> findAllGoods(GoodsAllCro goodsAllCro);
 
     /**
      * @Author ldc

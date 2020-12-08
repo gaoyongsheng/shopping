@@ -17,10 +17,7 @@ public class AbstractBaseCtrl {
     /**
      * 返回错误的处理数据
      * */
-    public Object failure(String code,String msg){
-
-        return ResponseUtils.failure(code,msg);
-    }
+    public Object failure(String code,String msg){ return ResponseUtils.failure(code,msg); }
 
     /**
      * 利用jpa查询分页结果
