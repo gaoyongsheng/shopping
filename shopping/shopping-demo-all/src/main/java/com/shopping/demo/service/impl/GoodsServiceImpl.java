@@ -3,10 +3,12 @@ package com.shopping.demo.service.impl;
 import com.shopping.demo.constants.ShopExceptionCode;
 import com.shopping.demo.cro.GoodsAllCro;
 import com.shopping.demo.cro.GoodsCro;
+import com.shopping.demo.entity.FilesRes;
 import com.shopping.demo.entity.Goods;
 import com.shopping.demo.entity.User;
 import com.shopping.demo.exception.MyShopException;
 import com.shopping.demo.repository.GoodsRepository;
+import com.shopping.demo.service.FilesResService;
 import com.shopping.demo.service.GoodsService;
 import com.shopping.demo.utils.DateTimeUtils;
 import com.shopping.demo.utils.ThreadLocalUtils;
@@ -32,13 +34,24 @@ public class GoodsServiceImpl extends AbstractBaseImpl implements GoodsService{
     @Autowired
     GoodsRepository goodsRepository;
 
+    @Autowired
+    FilesResService  filesResService;
+
     @Override
     public void addOneGoods(GoodsCro goodsCro) {
         Goods goods = new Goods(goodsCro.toDto());
         User curUser = (User)ThreadLocalUtils.get();
         goods.setGoodsUserId(curUser.getId());
         goods.setGoodsAddTime(DateTimeUtils.getSysCurDate());
+
+        List<FilesRes> titleImgList = filesResService.saveFileRes(goods.getGoodsTitleImage());
+        List<FilesRes> detailImgList = filesResService.saveFileRes(goods.getGoodsDetailImage());
+
+        goods.setGoodsTitleImage(titleImgList);
+        goods.setGoodsDetailImage(detailImgList);
+
         goodsRepository.save(goods);
+
     }
 
     @Override
@@ -49,6 +62,13 @@ public class GoodsServiceImpl extends AbstractBaseImpl implements GoodsService{
             User curUser = (User)ThreadLocalUtils.get();
             goods.setGoodsUserId(curUser.getId());
             goods.setGoodsAddTime(DateTimeUtils.getSysCurDate());
+
+            List<FilesRes> titleImgList = filesResService.saveFileRes(goods.getGoodsTitleImage());
+            List<FilesRes> detailImgList = filesResService.saveFileRes(goods.getGoodsDetailImage());
+
+            goods.setGoodsTitleImage(titleImgList);
+            goods.setGoodsDetailImage(detailImgList);
+
             goodsList.add(goods);
         }
         goodsRepository.saveAll(goodsList);
@@ -57,6 +77,12 @@ public class GoodsServiceImpl extends AbstractBaseImpl implements GoodsService{
     @Override
     public void deleteGoodsById(Long id) {
         Goods curGoods = findGoodsById(id);
+        List<FilesRes> titleImgList = curGoods.getGoodsTitleImage();
+        List<FilesRes> detailImgList = curGoods.getGoodsDetailImage();
+
+        filesResService.deleteFilesRes(titleImgList);
+        filesResService.deleteFilesRes(detailImgList);
+
         goodsRepository.deleteById(id);
     }
 
@@ -91,15 +117,21 @@ public class GoodsServiceImpl extends AbstractBaseImpl implements GoodsService{
 
     @Override
     public Goods editGoods(GoodsCro goodsCro) {
-        Goods curGoods = findGoodsById(goodsCro.getId());
+
+        Goods curGoods = new Goods(goodsCro.toDto());
+
         curGoods.setGoodsName(goodsCro.getGoodsName());
         curGoods.setGoodsPrice(goodsCro.getGoodsPrice());
-        curGoods.setGoodsDetailImage(goodsCro.getGoodsDetailImage());
         curGoods.setGoodsInventoryCount(goodsCro.getGoodsInventoryCount());
         curGoods.setGoodsSalesCount(goodsCro.getGoodsSalesCount());
-        curGoods.setGoodsImage(goodsCro.getGoodsImage());
         curGoods.setGoodsDetailText(goodsCro.getGoodsDetailText());
-        goodsRepository.save(curGoods);
-        return curGoods;
+
+        List<FilesRes> titleImgList = filesResService.saveFileRes(curGoods.getGoodsTitleImage());
+        List<FilesRes> detailImgList = filesResService.saveFileRes(curGoods.getGoodsDetailImage());
+
+        curGoods.setGoodsTitleImage(titleImgList);
+        curGoods.setGoodsDetailImage(detailImgList);
+
+        return goodsRepository.save(curGoods);
     }
 }

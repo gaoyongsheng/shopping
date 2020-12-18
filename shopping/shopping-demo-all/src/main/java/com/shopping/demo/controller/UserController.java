@@ -42,6 +42,7 @@ public class UserController extends AbstractBaseCtrl {
     }
 
     @PostMapping("/user.login")
+    @ResponseBody
     public Object userLogin(@RequestBody UserLoginCro userLoginCro){
         try{
             User user = userService.findUserByUserNameOrMobile(userLoginCro);
@@ -59,7 +60,6 @@ public class UserController extends AbstractBaseCtrl {
 
     @PostMapping("/user.edit")
     public Object editUser(@RequestBody UserEditCro userEditCro){
-
         return success(userService.editUser(userEditCro));
     }
 

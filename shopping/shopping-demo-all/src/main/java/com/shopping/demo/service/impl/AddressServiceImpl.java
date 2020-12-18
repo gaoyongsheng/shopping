@@ -9,6 +9,8 @@ import com.shopping.demo.repository.AddressRepository;
 import com.shopping.demo.service.AddressService;
 import com.shopping.demo.utils.ThreadLocalUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,8 +36,8 @@ public class AddressServiceImpl extends AbstractBaseImpl implements AddressServi
     }
 
     @Override
-    public List<Address> findAllAddress() {
-        return addressRepository.findAll();
+    public List<Address> findAllAddress(Long UserId) {
+        return addressRepository.findAddressesByAddrUserId(UserId);
     }
 
     @Override

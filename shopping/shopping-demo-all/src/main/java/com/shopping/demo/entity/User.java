@@ -22,8 +22,6 @@ import java.util.Set;
 @Entity
 @Table(name = DaoConstant.USER_TABLE_NAME)
 @Data
-@DynamicInsert()
-@DynamicUpdate
 public class User extends BaseModel<UserDto> {
 
     @Column(name = DaoConstant.USER_USERNAME)
@@ -53,9 +51,9 @@ public class User extends BaseModel<UserDto> {
     @Column(name = DaoConstant.USER_ROLE)
     private String userRole;
 
-    @OneToMany(cascade={CascadeType.ALL},fetch = FetchType.LAZY)
-    @JoinColumn(name = DaoConstant.ADDRESS_USER_ID)
-    private Set<Address> addrList = new HashSet();
+//    @OneToMany(cascade={CascadeType.REFRESH,CascadeType.MERGE,CascadeType.REMOVE},fetch = FetchType.EAGER)
+//    @JoinColumn(name = DaoConstant.ADDRESS_USER_ID)
+//    private Set<Address> addrList = new HashSet<Address>();
 
     public User(){}
 

@@ -24,9 +24,9 @@ public class AddressController extends AbstractBaseCtrl {
         return success("");
     }
 
-    @GetMapping("/address.findall")
-    public Object findAll(){
-        return success(addressService.findAllAddress());
+    @GetMapping("/address.findAllByUserId/{userId}")
+    public Object findAll(@PathVariable("userId") Long userId){
+        return success(addressService.findAllAddress(userId));
     }
 
     @PostMapping("/address.delete")

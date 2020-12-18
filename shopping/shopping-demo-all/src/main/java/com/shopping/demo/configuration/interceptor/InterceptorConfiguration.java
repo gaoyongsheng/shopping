@@ -3,11 +3,10 @@ package com.shopping.demo.configuration.interceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class InterceptorConfiguration extends WebMvcConfigurationSupport {
+public class InterceptorConfiguration implements WebMvcConfigurer {
 
     @Bean
     public MyInterceptor myInterceptor(){

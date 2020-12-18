@@ -12,9 +12,4 @@ public interface GoodsRepository extends JpaRepository<Goods,Long> {
 
     Goods findGoodsById(Long id);
 
-    @Override
-    default <S extends Goods> S save(S s){
-
-        return null;
-    }
 }

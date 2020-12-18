@@ -2,8 +2,11 @@ package com.shopping.demo.cro;
 
 import com.shopping.demo.cro.base.BaseCro;
 import com.shopping.demo.dto.GoodsDto;
+import com.shopping.demo.entity.FilesRes;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Author ldc
@@ -22,13 +25,13 @@ public class GoodsCro extends BaseCro {
 
     private String goodsSalesCount;
 
-    private List<String> goodsImage;
+    private List<FilesRes> goodsTitleImage;
 
     private String goodsDetailText;
 
     private String goodsAddTime;
 
-    private List<String> goodsDetailImage;
+    private List<FilesRes> goodsDetailImage;
 
     public GoodsDto toDto(){
         GoodsDto goodsDto = new GoodsDto();
@@ -37,7 +40,7 @@ public class GoodsCro extends BaseCro {
         goodsDto.setGoodsPrice(goodsPrice);
         goodsDto.setGoodsInventoryCount(goodsInventoryCount);
         goodsDto.setGoodsSalesCount(goodsSalesCount);
-        goodsDto.setGoodsImage(goodsImage);
+        goodsDto.setGoodsTitleImage(goodsTitleImage);
         goodsDto.setGoodsDetailText(goodsDetailText);
         goodsDto.setGoodsDetailImage(goodsDetailImage);
         goodsDto.setGoodsAddTime(goodsAddTime);
@@ -52,14 +55,6 @@ public class GoodsCro extends BaseCro {
         this.id = id;
     }
 
-    public String getGoodsAddTime() {
-        return goodsAddTime;
-    }
-
-    public void setGoodsAddTime(String goodsAddTime) {
-        this.goodsAddTime = goodsAddTime;
-    }
-
     public String getGoodsName() {
         return goodsName;
     }
@@ -72,8 +67,8 @@ public class GoodsCro extends BaseCro {
         return goodsPrice;
     }
 
-    public void setGoodsPrice(String goods_price) {
-        this.goodsPrice = goods_price;
+    public void setGoodsPrice(String goodsPrice) {
+        this.goodsPrice = goodsPrice;
     }
 
     public String getGoodsInventoryCount() {
@@ -92,12 +87,12 @@ public class GoodsCro extends BaseCro {
         this.goodsSalesCount = goodsSalesCount;
     }
 
-    public List<String> getGoodsImage() {
-        return goodsImage;
+    public List<FilesRes> getGoodsTitleImage() {
+        return goodsTitleImage;
     }
 
-    public void setGoodsImage(List<String> goodsImage) {
-        this.goodsImage = goodsImage;
+    public void setGoodsTitleImage(List<FilesRes> goodsTitleImage) {
+        this.goodsTitleImage = goodsTitleImage;
     }
 
     public String getGoodsDetailText() {
@@ -108,11 +103,19 @@ public class GoodsCro extends BaseCro {
         this.goodsDetailText = goodsDetailText;
     }
 
-    public List<String> getGoodsDetailImage() {
+    public String getGoodsAddTime() {
+        return goodsAddTime;
+    }
+
+    public void setGoodsAddTime(String goodsAddTime) {
+        this.goodsAddTime = goodsAddTime;
+    }
+
+    public List<FilesRes> getGoodsDetailImage() {
         return goodsDetailImage;
     }
 
-    public void setGoodsDetailImage(List<String> goodsDetailImage) {
+    public void setGoodsDetailImage(List<FilesRes> goodsDetailImage) {
         this.goodsDetailImage = goodsDetailImage;
     }
 }

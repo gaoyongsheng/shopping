@@ -62,11 +62,11 @@ public class GoodsController extends AbstractBaseCtrl {
 
     }
 
-    @DeleteMapping("/goods.deleteAll")
-    public Object deleteGoodsList(@RequestBody List<GoodsCro> goodsCroList){
-        goodsService.deleteListGoods(goodsCroList);
-        return success("");
-    }
+//    @DeleteMapping("/goods.deleteAll")
+//    public Object deleteGoodsList(@RequestBody List<GoodsCro> goodsCroList){
+//        goodsService.deleteListGoods(goodsCroList);
+//        return success("");
+//    }
 
     @PutMapping("/goods.edit")
     public Object editGoods(@RequestBody GoodsCro goodsCro){

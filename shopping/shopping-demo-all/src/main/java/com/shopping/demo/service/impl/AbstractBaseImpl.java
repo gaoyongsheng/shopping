@@ -3,6 +3,9 @@ package com.shopping.demo.service.impl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class AbstractBaseImpl {
     
     /**
@@ -23,6 +26,18 @@ public class AbstractBaseImpl {
         return pageable;
     }
 
+    /**
+     * @Author ldc
+     * @Description //TODO 生成当前请求的订单号
+     * @Date 14:29 2020/12/14
+     * @Param []
+     * @return java.lang.String
+     */
+    public String getCurOrderCode(){
+        Date dNow = new Date( );
+        SimpleDateFormat ft = new SimpleDateFormat("yyyyMMddHHmmSS");
+        return ft.format(dNow);
+    }
 
 
 }

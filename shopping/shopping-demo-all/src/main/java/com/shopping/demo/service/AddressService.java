@@ -28,7 +28,7 @@ public interface AddressService {
      * @Param []
      * @return java.util.List<com.shopping.demo.entity.Address>
      */
-    List<Address> findAllAddress();
+    List<Address> findAllAddress(Long userId);
 
     /**
      * @Author ldc

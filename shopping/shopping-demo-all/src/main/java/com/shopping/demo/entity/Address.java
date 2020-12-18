@@ -30,8 +30,8 @@ public class Address extends BaseModel<AddressDto> {
 
     @Column(name = DaoConstant.ADDRESS_DETAIL)
     private String addrDetail;
-
-//    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    mappedBy标签一定是定义在被拥有方的（被控方），他指向拥有方，表示此表是关系中的从表，mappedBy = "idCard"，值是主表中的属性
+//    @ManyToOne(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
 //    @JoinColumn(name = DaoConstant.ADDRESS_USER_ID)
 //    private User user;
 

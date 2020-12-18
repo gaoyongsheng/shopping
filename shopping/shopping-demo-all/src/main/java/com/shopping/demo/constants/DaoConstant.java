@@ -45,7 +45,7 @@ public class DaoConstant {
     public static final String GOODS_PRICE = "goods_price";//商品价格
     public static final String GOODS_INVENTORY_COUNT = "goods_inventory_count";//商品当前库存量
     public static final String GOODS_SALES_COUNT = "goods_sales_count";//商品销量
-    public static final String GOODS_IMAGE = "goods_image";//商品图片集合
+    public static final String GOODS_TITLE_IMAGE = "goods_title_image";//商品图片集合
     public static final String GOODS_DETAIL_TEXT = "goods_detail_text";//商品详情描述文本
     public static final String GOODS_DETAIL_IMAGE = "goods_detail_image";//商品详情图片集合
     public static final String GOODS_ADD_TIME = "goods_add_time";//商品添加时间
@@ -53,15 +53,40 @@ public class DaoConstant {
 
 
     /**
-     * 订单表（order）
+     * 购物车表（shop_cart）
      */
-    public static final String ORDER_TABLE_NAME = "order";//表名
-    public static final String ORDER_ID = "id";//订单id
-    public static final String ORDER_CODE  = "order_code";//订单编号
-    public static final String ORDER_STATUS = "order_status";//订单状态 0 待付款 1 待发货 2 待收货 3 完成
-    public static final String ORDER_TOTAL_PRICE = "order_total_price";//订单总价
-    public static final String ORDER_LIST_GOODS = "order_list_goods";//订单里面的商品列表(包含购买的商品数量)
-    public static final String ORDER_USER_ID = "order_user_id";//order表的外键指向用户表的主键
+    public static final String SHOP_CART_TABLE_NAME = "shop_cart";//表名
+    public static final String SHOP_CART_ID = "id";
+    public static final String SHOP_CART_COUNT = "count";//购买的商品数量
+    public static final String SHOP_CART_TOTAL_PRICE = "total_price";//购买的商品总价格
+
+    /**
+     * 购物车表和商品表的中间表（middle_shop_cart_goods）
+     */
+    public static final String MIDDLE_SHOP_CART_GOODS_TABLE_NAME = "middle_shop_cart_goods";//表名
+    public static final String MIDDLE_SHOP_CART_ID = "middle_shop_cart_id";//购物车id
+    public static final String MIDDLE_GOODS_ID = "middle_goods_id";//购买的商品id
+
+    /**
+     * 订单表（orderS）
+     */
+    public static final String ORDERS_TABLE_NAME = "orders";//表名
+    public static final String ORDERS_ID = "id";//订单id
+    public static final String ORDERS_CODE  = "order_code";//订单编号
+    public static final String ORDERS_STATUS = "order_status";//订单状态 0 待付款 1 待发货 2 待收货 3 完成
+    public static final String ORDERS_TOTAL_PRICE = "order_total_price";//订单总价
+    public static final String ORDERS_ADD_TIME = "order_add_time";//订单生成时间
+    public static final String ORDERS_USER_ID = "order_user_id";//下订单的用户的id
+    public static final String ORDERS_SHOP_CART_ID = "order_shop_cart_id";//订单关联的购物车表的Id(外键)
+
+    /**
+     * 图片资源表表（files_res）
+     */
+    public static final String FILES_RES_TABLE_NAME = "files_res";//表名
+    public static final String FILES_RES_ID = "id";//主键id
+    public static final String FILE_ID = "file_id";// fastdfs返回的值
+    public static final String FILE_PATH = "file_res_path";
+    public static final String FILE_FORMAT = "file_res_format"; // 图片格式 .png .jpg
 
 
     /**

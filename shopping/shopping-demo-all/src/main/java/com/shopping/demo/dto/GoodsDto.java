@@ -1,6 +1,7 @@
 package com.shopping.demo.dto;
 
 import com.shopping.demo.dto.base.BaseDto;
+import com.shopping.demo.entity.FilesRes;
 
 import java.util.List;
 
@@ -21,13 +22,13 @@ public class GoodsDto extends BaseDto {
 
     private String goodsSalesCount;
 
-    private List<String> goodsImage;
+    private List<FilesRes> goodsTitleImage;
 
     private String goodsDetailText;
 
     private String goodsAddTime;
 
-    private List<String> goodsDetailImage;
+    private List<FilesRes> goodsDetailImage;
 
     public Long getId() {
         return id;
@@ -35,14 +36,6 @@ public class GoodsDto extends BaseDto {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getGoodsAddTime() {
-        return goodsAddTime;
-    }
-
-    public void setGoodsAddTime(String goodsAddTime) {
-        this.goodsAddTime = goodsAddTime;
     }
 
     public String getGoodsName() {
@@ -57,8 +50,8 @@ public class GoodsDto extends BaseDto {
         return goodsPrice;
     }
 
-    public void setGoodsPrice(String goods_price) {
-        this.goodsPrice = goods_price;
+    public void setGoodsPrice(String goodsPrice) {
+        this.goodsPrice = goodsPrice;
     }
 
     public String getGoodsInventoryCount() {
@@ -77,12 +70,12 @@ public class GoodsDto extends BaseDto {
         this.goodsSalesCount = goodsSalesCount;
     }
 
-    public List<String> getGoodsImage() {
-        return goodsImage;
+    public List<FilesRes> getGoodsTitleImage() {
+        return goodsTitleImage;
     }
 
-    public void setGoodsImage(List<String> goodsImage) {
-        this.goodsImage = goodsImage;
+    public void setGoodsTitleImage(List<FilesRes> goodsTitleImage) {
+        this.goodsTitleImage = goodsTitleImage;
     }
 
     public String getGoodsDetailText() {
@@ -93,11 +86,19 @@ public class GoodsDto extends BaseDto {
         this.goodsDetailText = goodsDetailText;
     }
 
-    public List<String> getGoodsDetailImage() {
+    public String getGoodsAddTime() {
+        return goodsAddTime;
+    }
+
+    public void setGoodsAddTime(String goodsAddTime) {
+        this.goodsAddTime = goodsAddTime;
+    }
+
+    public List<FilesRes> getGoodsDetailImage() {
         return goodsDetailImage;
     }
 
-    public void setGoodsDetailImage(List<String> goodsDetailImage) {
+    public void setGoodsDetailImage(List<FilesRes> goodsDetailImage) {
         this.goodsDetailImage = goodsDetailImage;
     }
 
@@ -109,7 +110,7 @@ public class GoodsDto extends BaseDto {
                 ", goodsPrice='" + goodsPrice +
                 ", goodsInventoryCount='" + goodsInventoryCount +
                 ", goodsSalesCount='" + goodsSalesCount +
-                ", goodsImage=" + goodsImage +
+                ", goodsTitleImage=" + goodsTitleImage +
                 ", goodsDetailText='" + goodsDetailText +
                 ", goodsDetailImage=" + goodsDetailImage +
                 ", goodsAddTime=" + goodsAddTime +
