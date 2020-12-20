@@ -1,6 +1,7 @@
 package com.shopping.demo.controller;
 
 import com.shopping.demo.cro.OrderCreateCro;
+import com.shopping.demo.cro.OrderPageCro;
 import com.shopping.demo.exception.MyShopException;
 import com.shopping.demo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,12 @@ public class OrderController extends AbstractBaseCtrl{
 
     @PostMapping("/orders.create")
     public Object createOrders(@RequestBody OrderCreateCro orderCreateCro){
-        return success(orderService.createOrder(orderCreateCro));
+        try{
+            return success(orderService.createOrder(orderCreateCro));
+        } catch (MyShopException ex){
+            return failure(ex.getErrorCode(),ex.getMessage());
+        }
+
     }
 
     @GetMapping("/order.findById/{id}")
@@ -32,4 +38,20 @@ public class OrderController extends AbstractBaseCtrl{
             return failure(ex.getErrorCode(),ex.getMessage());
         }
     }
+
+    @PostMapping("/order.findAll")
+    public Object findOrdersAll(@RequestBody OrderPageCro orderPageCro){
+        return success(getData(orderService.findAllOrders(orderPageCro)));
+    }
+
+    @DeleteMapping("order.delete/{id}")
+    public Object deleteOrder(@PathVariable("id") Long id){
+        try{
+            orderService.deleteOrder(id);
+            return success("");
+        } catch (MyShopException ex){
+            return failure(ex.getErrorCode(),ex.getMessage());
+        }
+    }
+
 }

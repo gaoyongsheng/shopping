@@ -77,6 +77,7 @@ public class DaoConstant {
     public static final String ORDERS_TOTAL_PRICE = "order_total_price";//订单总价
     public static final String ORDERS_ADD_TIME = "order_add_time";//订单生成时间
     public static final String ORDERS_USER_ID = "order_user_id";//下订单的用户的id
+    public static final String ORDERS_ADDRESS_ID = "order_address_id";//下订单的用户的id
     public static final String ORDERS_SHOP_CART_ID = "order_shop_cart_id";//订单关联的购物车表的Id(外键)
 
     /**

@@ -2,6 +2,7 @@ package com.shopping.demo.service.impl;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +24,13 @@ public class AbstractBaseImpl {
      * */
     public Pageable getPageable(int page, int size){
         Pageable pageable = PageRequest.of(page,size);
+
+        return pageable;
+    }
+
+    public Pageable getPageable(int page, int size, Sort sort){
+        Pageable pageable = PageRequest.of(page,size,sort);
+
         return pageable;
     }
 

@@ -1,19 +1,22 @@
 package com.shopping.demo.service.impl;
 
+import com.shopping.demo.constants.DaoConstant;
 import com.shopping.demo.constants.ShopExceptionCode;
 import com.shopping.demo.cro.OrderCreateCro;
-import com.shopping.demo.entity.Goods;
-import com.shopping.demo.entity.Order;
-import com.shopping.demo.entity.ShopCart;
-import com.shopping.demo.entity.User;
+import com.shopping.demo.cro.OrderPageCro;
+import com.shopping.demo.entity.*;
 import com.shopping.demo.exception.MyShopException;
 import com.shopping.demo.repository.OrderRepository;
+import com.shopping.demo.service.AddressService;
 import com.shopping.demo.service.GoodsService;
 import com.shopping.demo.service.OrderService;
 import com.shopping.demo.service.ShopCartService;
 import com.shopping.demo.utils.DateTimeUtils;
 import com.shopping.demo.utils.ThreadLocalUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,6 +42,9 @@ public class OrderServiceImpl extends AbstractBaseImpl implements OrderService {
     @Autowired
     ShopCartService shopCartService;
 
+    @Autowired
+    AddressService addressService;
+
     @Override
     public Order createOrder(OrderCreateCro orderCreateCro) {
         Order order = new Order();
@@ -56,14 +62,18 @@ public class OrderServiceImpl extends AbstractBaseImpl implements OrderService {
 
         Set<ShopCart> shopCartList = new HashSet<ShopCart>();
         shopCartList.add(temp);
+        order.setShopCartList(shopCartList);
 
         order.setOrderCode(getCurOrderCode());
         order.setOrderAddTime(DateTimeUtils.getSysCurDate());
         order.setOrderTotalPrice(orderCreateCro.getPrice());
         order.setOrderStatus(0+"");
+
         User curUser = (User) ThreadLocalUtils.get();
-        order.setOrderUserId(curUser.getId()+"");
-        order.setShopCartList(shopCartList);
+        order.setUser(curUser);
+
+        Address addr = addressService.findAddressById(strToLong(orderCreateCro.getAddressId()));
+        order.setAddress(addr);
 
         return orderRepository.save(order);
     }
@@ -75,6 +85,22 @@ public class OrderServiceImpl extends AbstractBaseImpl implements OrderService {
             throw new MyShopException(ShopExceptionCode.ENTITY_NO_EXISTS,"订单不存在");
         }
         return orderRepository.findOrderById(id);
+    }
+
+    @Override
+    public Page<Order> findAllOrders(OrderPageCro orderPageCro) {
+
+        Sort sort = Sort.by("orderAddTime").descending();
+        Pageable pageable = getPageable(orderPageCro.getOffset(),orderPageCro.getPageSize(),sort);
+
+        return orderRepository.findAll(pageable);
+    }
+
+    @Override
+    public void deleteOrder(Long id) {
+        findOrderById(id);
+
+        orderRepository.deleteById(id);
     }
 
 }

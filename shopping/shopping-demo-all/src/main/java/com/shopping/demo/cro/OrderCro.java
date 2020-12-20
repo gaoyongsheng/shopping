@@ -23,14 +23,15 @@ public class OrderCro extends BaseCro {
     private String orderAddTime;
 
     public OrderDto toDto(){
-        OrderDto orderDto = new OrderDto();
-        orderDto.setId(id);
-        orderDto.setOrderCode(orderCode);
-        orderDto.setOrderStatus(orderStatus);
-        orderDto.setOrderTotalPrice(orderTotalPrice);
-        orderDto.setOrderUserId(orderUserId);
-        orderDto.setOrderAddTime(orderAddTime);
-        return orderDto;
+//        OrderDto orderDto = new OrderDto();
+//        orderDto.setId(id);
+//        orderDto.setOrderCode(orderCode);
+//        orderDto.setOrderStatus(orderStatus);
+//        orderDto.setOrderTotalPrice(orderTotalPrice);
+//        orderDto.setOrderUserId(orderUserId);
+//        orderDto.setOrderAddTime(orderAddTime);
+//        return orderDto;
+        return null;
     }
 
     public Long getId() {

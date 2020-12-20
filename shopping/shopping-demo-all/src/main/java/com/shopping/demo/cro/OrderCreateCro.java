@@ -22,11 +22,15 @@ public class OrderCreateCro extends BaseCro {
 
     private String price;// 购买商品的总价格
 
-    public OrderDto toDto(){
-        OrderDto orderDto = new OrderDto();
-        Goods goods = goodsService.findGoodsById(goodsId);
+    private String addressId;// 收货人地址
 
-        return orderDto;
+
+    public String getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(String addressId) {
+        this.addressId = addressId;
     }
 
     public Long getGoodsId() {

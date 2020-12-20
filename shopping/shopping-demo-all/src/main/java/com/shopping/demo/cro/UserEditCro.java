@@ -24,6 +24,7 @@ public class UserEditCro extends BaseCro {
         userDto.setId(id);
         userDto.setUserName(userName);
         userDto.setTrueName(trueName);
+        userDto.setMobileNum(mobileNum);
         userDto.setEmail(email);
         userDto.setSex(sex);
         userDto.setUserRole(userRole);

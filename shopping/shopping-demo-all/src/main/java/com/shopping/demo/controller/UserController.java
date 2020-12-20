@@ -42,7 +42,6 @@ public class UserController extends AbstractBaseCtrl {
     }
 
     @PostMapping("/user.login")
-    @ResponseBody
     public Object userLogin(@RequestBody UserLoginCro userLoginCro){
         try{
             User user = userService.findUserByUserNameOrMobile(userLoginCro);

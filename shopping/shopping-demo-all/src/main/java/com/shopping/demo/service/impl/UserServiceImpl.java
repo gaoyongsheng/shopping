@@ -68,6 +68,8 @@ public class UserServiceImpl extends AbstractBaseImpl implements UserService {
         curUser.setSex(userEditCro.getSex());
         curUser.setUserRole(userEditCro.getUserRole());
         return curUser;
+//        return userRepository.save(new User(userEditCro.toDto()));
+
     }
 
     @Override
@@ -128,5 +130,6 @@ public class UserServiceImpl extends AbstractBaseImpl implements UserService {
         }
         userRepository.deleteUserById(id);
     }
+
 
 }
