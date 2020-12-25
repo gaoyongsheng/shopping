@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @Version 1.0
  */
 
-@Component
+//@Component
 public class RedisUtils {
 
     @Autowired

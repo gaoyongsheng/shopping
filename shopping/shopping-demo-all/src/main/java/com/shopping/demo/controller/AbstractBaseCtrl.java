@@ -2,10 +2,15 @@ package com.shopping.demo.controller;
 
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.shopping.demo.redis.RedisUtils;
 import com.shopping.demo.utils.ResponseUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
 public class AbstractBaseCtrl {
+
+//    @Autowired
+//    protected RedisUtils redisUtils;
 
     /**
      * 返回正确的处理数据

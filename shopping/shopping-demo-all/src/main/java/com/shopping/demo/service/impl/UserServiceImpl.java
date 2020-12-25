@@ -22,6 +22,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @CacheConfig(cacheNames = "curLoginUser")
 @Service
 @Transactional
@@ -60,16 +62,32 @@ public class UserServiceImpl extends AbstractBaseImpl implements UserService {
     @Override
     public User editUser(UserEditCro userEditCro) {
         // 获取当前登录的用户信息
-        User curUser = findUserById(userEditCro.getId());
-        curUser.setUserName(userEditCro.getUserName());
-        curUser.setTrueName(userEditCro.getTrueName());
-        curUser.setMobileNum(userEditCro.getMobileNum());
-        curUser.setEmail(userEditCro.getEmail());
-        curUser.setSex(userEditCro.getSex());
-        curUser.setUserRole(userEditCro.getUserRole());
-        return curUser;
-//        return userRepository.save(new User(userEditCro.toDto()));
+//        User curUser = findUserById(userEditCro.getId());
+//        curUser.setUserName(userEditCro.getUserName());
+//        curUser.setTrueName(userEditCro.getTrueName());
+//        curUser.setMobileNum(userEditCro.getMobileNum());
+//        curUser.setEmail(userEditCro.getEmail());
+//        curUser.setSex(userEditCro.getSex());
+//        curUser.setUserRole(userEditCro.getUserRole());
+//        return curUser;
 
+
+        Optional<User> optionalUser =  userRepository.findById(userEditCro.getId());
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+
+            user.setId(userEditCro.getId());
+            user.setUserName(userEditCro.getUserName());
+            user.setTrueName(userEditCro.getTrueName());
+            user.setEmail(userEditCro.getEmail());
+            user.setMobileNum(userEditCro.getMobileNum());
+            user.setSex(userEditCro.getSex());
+            user.setUserRole(userEditCro.getUserRole());
+
+            return userRepository.save(user);
+        } else {
+            throw new MyShopException(ShopExceptionCode.ENTITY_NO_EXISTS,"用户不存在"); // 用户不存在
+        }
     }
 
     @Override

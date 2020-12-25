@@ -1,6 +1,5 @@
 package com.shopping.demo.controller;
 
-import com.shopping.demo.constants.ShopExceptionCode;
 import com.shopping.demo.cro.UserCro;
 import com.shopping.demo.cro.UserEditCro;
 import com.shopping.demo.cro.UserLoginCro;
@@ -8,14 +7,13 @@ import com.shopping.demo.cro.UserRegisteCro;
 import com.shopping.demo.entity.User;
 import com.shopping.demo.exception.MyShopException;
 import com.shopping.demo.service.UserService;
-import com.shopping.demo.utils.ResponseUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author Gao
@@ -26,11 +24,13 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @Slf4j
 @RequestMapping("/service/v1")
+@Api(tags = "用户", description = "API接口")
 public class UserController extends AbstractBaseCtrl {
 
     @Autowired
     UserService userService;
 
+    @ApiOperation(value = "用户注册")
     @PostMapping("/user.register")
     public Object registerUser(@RequestBody UserRegisteCro userRegisteCro){
         try{
@@ -45,6 +45,13 @@ public class UserController extends AbstractBaseCtrl {
     public Object userLogin(@RequestBody UserLoginCro userLoginCro){
         try{
             User user = userService.findUserByUserNameOrMobile(userLoginCro);
+//            int data = 100;
+//            if(redisUtils.hasKey("rankList")){
+//                redisUtils.decr("rankList",1L);
+//            } else {
+//                redisUtils.set("rankList",data);
+//            }
+
             return success(user);
         } catch (MyShopException ex){
             return failure(ex.getErrorCode(),ex.getMessage());
@@ -80,6 +87,7 @@ public class UserController extends AbstractBaseCtrl {
     @GetMapping("/user.deleteById")
     public Object deleteUserById(@RequestParam("id") Long id){
         try{
+
             userService.deleteUserById(id);
             return success("");
         } catch (MyShopException ex){

@@ -2,6 +2,7 @@ package com.shopping.demo.service;
 
 import com.shopping.demo.cro.OrderCreateCro;
 import com.shopping.demo.cro.OrderCro;
+import com.shopping.demo.cro.OrderPageConditionCro;
 import com.shopping.demo.cro.OrderPageCro;
 import com.shopping.demo.entity.Order;
 import org.springframework.data.domain.Page;
@@ -22,5 +23,7 @@ public interface OrderService {
     Page<Order> findAllOrders(OrderPageCro orderPageCro);
 
     void deleteOrder(Long id);
+
+    Page<Order> findAllWitnCondition(OrderPageConditionCro orderPageConditionCro);
 
 }

@@ -3,6 +3,7 @@ package com.shopping.demo.service.impl;
 import com.shopping.demo.constants.DaoConstant;
 import com.shopping.demo.constants.ShopExceptionCode;
 import com.shopping.demo.cro.OrderCreateCro;
+import com.shopping.demo.cro.OrderPageConditionCro;
 import com.shopping.demo.cro.OrderPageCro;
 import com.shopping.demo.entity.*;
 import com.shopping.demo.exception.MyShopException;
@@ -17,10 +18,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -101,6 +109,37 @@ public class OrderServiceImpl extends AbstractBaseImpl implements OrderService {
         findOrderById(id);
 
         orderRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Order> findAllWitnCondition(OrderPageConditionCro orderPageConditionCro) {
+
+        Pageable pageable = getPageable(orderPageConditionCro.getOffset(),orderPageConditionCro.getPageSize());
+
+        Page<Order> orderPage = orderRepository.findAll(new Specification<Order>() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+
+                List<Predicate> list = new ArrayList<Predicate>();
+                // 条件查询订单状态 orderStatus
+                if(orderPageConditionCro.getOrderStatus() != ""){
+                    Predicate statusP = criteriaBuilder.equal(root.get("orderStatus"),orderPageConditionCro.getOrderStatus());
+                    list.add(statusP);
+                }
+                // 时间范围查询 orderAddTime
+                if(orderPageConditionCro.getBeginTime() != "" && orderPageConditionCro.getEndTime() != ""){
+                    Predicate timeRange = criteriaBuilder.between(root.get("orderAddTime"),orderPageConditionCro.getBeginTime(),
+                            orderPageConditionCro.getEndTime());
+                    list.add(timeRange);
+                }
+
+                Predicate[] p = new Predicate[list.size()];
+
+                return criteriaBuilder.and(list.toArray(p));
+            }
+        }, pageable);
+
+        return orderPage;
     }
 
 }

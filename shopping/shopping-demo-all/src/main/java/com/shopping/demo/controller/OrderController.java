@@ -1,6 +1,7 @@
 package com.shopping.demo.controller;
 
 import com.shopping.demo.cro.OrderCreateCro;
+import com.shopping.demo.cro.OrderPageConditionCro;
 import com.shopping.demo.cro.OrderPageCro;
 import com.shopping.demo.exception.MyShopException;
 import com.shopping.demo.service.OrderService;
@@ -52,6 +53,11 @@ public class OrderController extends AbstractBaseCtrl{
         } catch (MyShopException ex){
             return failure(ex.getErrorCode(),ex.getMessage());
         }
+    }
+
+    @PostMapping("/order.find.condition")
+    public Object findOnCondition(@RequestBody OrderPageConditionCro orderPageConditionCro){
+        return success(getData(orderService.findAllWitnCondition(orderPageConditionCro)));
     }
 
 }
