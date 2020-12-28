@@ -7,6 +7,7 @@ import com.shopping.demo.cro.UserRegisteCro;
 import com.shopping.demo.entity.User;
 import com.shopping.demo.exception.MyShopException;
 import com.shopping.demo.service.UserService;
+import com.shopping.demo.vo.MailVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -93,5 +94,11 @@ public class UserController extends AbstractBaseCtrl {
         } catch (MyShopException ex){
             return failure(ex.getErrorCode(),ex.getMessage());
         }
+    }
+
+    @PostMapping("/mail.send")
+    public Object sendMail(@RequestBody MailVo mailVo){
+        mailService.sendMail(mailVo);
+        return success("");
     }
 }

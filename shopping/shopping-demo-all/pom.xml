@@ -143,6 +143,7 @@
             <artifactId>spring-context-support</artifactId>
         </dependency>
 
+        <!--mail-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
@@ -150,12 +151,6 @@
 
     </dependencies>
 
-    <!--<repositories>
-        <repository>
-            <id>alimaven</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        </repository>
-    </repositories>-->
 
     <build>
         <defaultGoal>compile</defaultGoal>

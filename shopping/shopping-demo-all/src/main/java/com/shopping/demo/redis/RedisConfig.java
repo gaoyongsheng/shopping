@@ -20,7 +20,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @Version 1.0
  */
 
-//@Configuration
+@Configuration
 public class RedisConfig {
 
     /**
