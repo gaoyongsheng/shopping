@@ -1,18 +1,14 @@
 package com.shopping.demo.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.shopping.demo.constants.DaoConstant;
-import com.shopping.demo.cro.UserEditCro;
 import com.shopping.demo.dto.UserDto;
 import com.shopping.demo.entity.base.BaseModel;
 import lombok.Data;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * @Author Gao

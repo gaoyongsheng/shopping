@@ -6,7 +6,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-@EnableCaching
+//@EnableCaching
 @EnableSwagger2
 public class ShoppingDemoAllApplication {
 

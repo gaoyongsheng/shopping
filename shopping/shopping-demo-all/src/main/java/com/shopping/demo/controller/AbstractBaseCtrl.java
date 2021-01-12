@@ -13,8 +13,8 @@ public class AbstractBaseCtrl {
     @Autowired
     protected RedisUtils redisUtils;
 
-      @Autowired
-      protected MailService mailService;
+    @Autowired
+    protected MailService mailService;
 
     /**
      * 返回正确的处理数据

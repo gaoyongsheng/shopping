@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-@CacheConfig(cacheNames = "curLoginUser")
+@CacheConfig(cacheNames = "LoginUser")
 @Service
 @Transactional
 public class UserServiceImpl extends AbstractBaseImpl implements UserService {

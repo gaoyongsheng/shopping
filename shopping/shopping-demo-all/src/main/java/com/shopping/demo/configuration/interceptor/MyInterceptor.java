@@ -1,16 +1,18 @@
 package com.shopping.demo.configuration.interceptor;
 
 import com.shopping.demo.constants.ShopExceptionCode;
+import com.shopping.demo.dto.UserDto;
+import com.shopping.demo.entity.OperLog;
 import com.shopping.demo.entity.User;
 import com.shopping.demo.exception.MyShopException;
+import com.shopping.demo.repository.OperLogRepository;
 import com.shopping.demo.service.UserService;
-import com.shopping.demo.utils.EncryptUtils;
-import com.shopping.demo.utils.ResponseUtils;
-import com.shopping.demo.utils.ThreadLocalUtils;
-import com.shopping.demo.utils.Util;
+import com.shopping.demo.utils.*;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,6 +27,8 @@ public class MyInterceptor implements HandlerInterceptor {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private OperLogRepository operLogRepository;
 
     /*{
         content-type:application/json,
@@ -74,8 +78,29 @@ public class MyInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object object, Exception ex) throws Exception {
         LOG.info("afterCompletion");
+        User userDto = (User) ThreadLocalUtils.get();
+        String code = CodeThreadLocal.get();
+        String reqData = Util.getReqBodyStrByHeader(request);
+        String apiInterface = request.getRequestURL().toString();
+        String apiDescription = "";
+//        if (object instanceof HandlerMethod) {
+//            HandlerMethod handler = (HandlerMethod) object;
+//            apiDescription = handler.getMethodAnnotation(ApiOperation.class).value();
+//        }
+        OperLog operLog = new OperLog();
+        operLog.setUserId(userDto.getId());
+        operLog.setUserName(userDto.getUserName());
+        operLog.setTrueName(userDto.getTrueName());
+        operLog.setMobileNum(userDto.getMobileNum());
+        operLog.setApiInterface(apiInterface);
+        operLog.setApiDescription(apiDescription);
+        operLog.setRetCode(code);
+        operLog.setReqData(reqData.length() > 65535 ? "新闻内容长度过长，不做存储" : reqData);
+        operLog.setReqTime(DateTimeUtils.stampToDate(System.currentTimeMillis()+""));
+        operLogRepository.save(operLog);
+
     }
 
 }
